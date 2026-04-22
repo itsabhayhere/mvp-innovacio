@@ -20,19 +20,58 @@
     body { background: var(--white); color: var(--black); font-family: 'Times New Roman', Times, serif; overflow-x: hidden; }
     * { font-family: 'Times New Roman', Times, serif; }
 
+    /* URGENCY BANNER */
+    .urgency-banner {
+      background: linear-gradient(90deg, #C2410C, #F97316, #C2410C);
+      background-size: 200% 100%;
+      animation: urgency-shift 3s ease infinite;
+      color: white;
+      text-align: center;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      position: relative;
+      z-index: 101;
+    }
+    @keyframes urgency-shift {
+      0%,100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .urgency-banner .ub-inner {
+      display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+    }
+    .ub-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: white;
+      animation: blink-dot 1s step-start infinite; flex-shrink: 0;
+    }
+    @keyframes blink-dot { 0%,100%{opacity:1} 50%{opacity:0.1} }
+    .urgency-banner a { color: white; text-decoration: underline; font-weight: 800; }
+
     /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.07); padding: 14px 0; }
+    nav { position: sticky; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(0,0,0,0.07); padding: 14px 0; }
     .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; }
     .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--black); }
     .logo-mark { width: 36px; height: 36px; border-radius: 9px; background: var(--orange); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; color: white; }
     .logo-text { font-weight: 700; font-size: 15px; }
     .logo-text span { color: var(--orange); }
     .nav-pill { background: var(--peach-bg); border: 1px solid var(--orange-light); border-radius: 50px; padding: 5px 14px; font-size: 11px; font-weight: 700; color: var(--orange); text-transform: uppercase; letter-spacing: 0.08em; }
-    .nav-ctas { display: flex; gap: 10px; }
+    .nav-ctas { display: flex; gap: 10px; align-items: center; }
     .btn-nav-dark { display: flex; align-items: center; gap: 7px; padding: 9px 18px; border-radius: 50px; background: var(--black); color: white; font-weight: 600; font-size: 13px; text-decoration: none; transition: all 0.2s; }
     .btn-nav-dark:hover { background: #333; transform: translateY(-1px); }
-    .btn-nav-orange { display: flex; align-items: center; gap: 7px; padding: 9px 18px; border-radius: 50px; background: var(--orange); color: white; font-weight: 600; font-size: 13px; text-decoration: none; transition: all 0.2s; }
-    .btn-nav-orange:hover { background: var(--orange-dark); transform: translateY(-1px); }
+
+    /* BLINKING HEADER CTA */
+    .btn-nav-orange {
+      display: flex; align-items: center; gap: 7px; padding: 9px 18px;
+      border-radius: 50px; background: var(--orange); color: white;
+      font-weight: 700; font-size: 13px; text-decoration: none;
+      animation: pulse-cta 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse-cta {
+      0%,100% { background: var(--orange); box-shadow: 0 0 0 0 rgba(249,115,22,0.5); }
+      50% { background: var(--orange-dark); box-shadow: 0 0 0 7px rgba(249,115,22,0); }
+    }
+    .btn-nav-orange:hover { animation: none; background: var(--orange-dark); transform: translateY(-1px); }
 
     /* HERO */
     .hero { min-height: 100vh; padding: 130px 28px 80px; background: var(--cream); display: flex; align-items: center; position: relative; overflow: hidden; }
@@ -263,6 +302,29 @@
     .btn-sm-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.7; margin-bottom: 2px; }
     .btn-lg-lbl { font-size: 17px; font-weight: 800; }
 
+    /* FOOTER URGENCY */
+    .footer-urgency {
+      background: var(--black);
+      border-top: 2px solid var(--orange);
+      padding: 18px 28px;
+      text-align: center;
+    }
+    .footer-urgency-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
+    }
+    .footer-urgency-text { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.8); }
+    .footer-urgency-text strong { color: var(--orange); }
+    .footer-urgency-cta {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--orange); color: white;
+      border-radius: 50px; padding: 9px 20px;
+      font-size: 13px; font-weight: 700; text-decoration: none;
+      animation: pulse-cta 1.5s ease-in-out infinite;
+      white-space: nowrap;
+    }
+    .footer-urgency-cta:hover { animation: none; background: var(--orange-dark); }
+
     /* FOOTER */
     footer { border-top: 1px solid #EBEBEB; padding: 26px 28px; }
     .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
@@ -284,10 +346,20 @@
     ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: var(--cream); } ::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 4px; }
 
     @media (max-width: 1024px) { .hero-inner { grid-template-columns: 1fr; } .hero-card { display: none; } .what-mvp-inner { grid-template-columns: 1fr; } .process-grid { grid-template-columns: repeat(2,1fr); } }
-    @media (max-width: 768px) { .packages-grid, .included-grid, .testi-grid { grid-template-columns: 1fr; } .stats-inner { grid-template-columns: repeat(2,1fr); } .process-grid { grid-template-columns: 1fr; } .mobile-sticky { display: block; } body { padding-bottom: 74px; } .btn-nav-dark { display: none; } }
+    @media (max-width: 768px) { .packages-grid, .included-grid, .testi-grid { grid-template-columns: 1fr; } .stats-inner { grid-template-columns: repeat(2,1fr); } .process-grid { grid-template-columns: 1fr; } .mobile-sticky { display: block; } body { padding-bottom: 74px; } .btn-nav-dark { display: none; } .urgency-banner { font-size: 11px; } }
   </style>
 </head>
 <body>
+
+<!-- URGENCY BANNER (top of page) -->
+<div class="urgency-banner">
+  <div class="ub-inner">
+    <span class="ub-dot"></span>
+    <span>&#128293; Only <strong>3 MVP spots</strong> remaining this quarter — first come, first served!</span>
+    <a href="tel:6468322237">Call Now: (646) 832-2237</a>
+    <span class="ub-dot"></span>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -298,13 +370,13 @@
     </a>
     <div class="nav-pill">AI MVP Development</div>
     <div class="nav-ctas">
-      <a href="tel:+16468322237" class="btn-nav-dark">
+      <a href="tel:6468322237" class="btn-nav-dark">
         <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-        Call Now
+        (646) 832-2237
       </a>
       <a href="https://wa.me/919007271601?text=Hi!%20I%27m%20interested%20in%20building%20an%20AI%20MVP." target="_blank" class="btn-nav-orange">
         <svg width="13" height="13" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp
+        WhatsApp Us Now &#9889;
       </a>
     </div>
   </div>
@@ -316,10 +388,10 @@
   <div class="hero-inner">
     <div>
       <div class="hero-badge fade-up"><div class="hero-badge-dot"></div><span class="hero-badge-text">Limited MVP Spots This Quarter</span></div>
-      <h1 class="fade-up">Your AI MVP.<br/><span class="orange">8–12 Weeks.</span><br/>Production-Ready.</h1>
-      <p class="hero-sub fade-up">We take your idea from zero to a <strong>fully functional, deployed AI product</strong> — validated by real users. <strong>3–5× faster</strong> than traditional agencies at <strong>4× lower cost.</strong></p>
+      <h1 class="fade-up">Your AI MVP.<br/><span class="orange">8&#8211;12 Weeks.</span><br/>Production-Ready.</h1>
+      <p class="hero-sub fade-up">We take your idea from zero to a <strong>fully functional, deployed AI product</strong> &#8212; validated by real users. <strong>3&#8211;5&#215; faster</strong> than traditional agencies at <strong>4&#215; lower cost.</strong></p>
       <div class="hero-ctas fade-up">
-        <a href="tel:+16468322237" class="btn-hero-dark">
+        <a href="tel:6468322237" class="btn-hero-dark">
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
           Free MVP Strategy Call
         </a>
@@ -329,33 +401,33 @@
         </a>
       </div>
       <div class="hero-trust fade-up">
-        <span class="trust-pill">✦ 130+ AI MVPs Shipped</span>
-        <span class="trust-pill">✦ Fixed-Price Delivery</span>
-        <span class="trust-pill">✦ No Long Contracts</span>
-        <span class="trust-pill">✦ 100% Code Ownership</span>
+        <span class="trust-pill">&#10022; 130+ AI MVPs Shipped</span>
+        <span class="trust-pill">&#10022; Fixed-Price Delivery</span>
+        <span class="trust-pill">&#10022; No Long Contracts</span>
+        <span class="trust-pill">&#10022; 100% Code Ownership</span>
       </div>
     </div>
     <div class="hero-card fade-up">
       <div class="hero-card-title">Your MVP Roadmap</div>
       <div class="mvp-phase">
         <div class="phase-num">01</div>
-        <div><div class="phase-lbl">Week 1</div><div class="phase-title">Discovery & Scoping</div><div class="phase-desc">Define MVP scope, user stories, tech stack, and success metrics.</div></div>
+        <div><div class="phase-lbl">Week 1</div><div class="phase-title">Discovery &amp; Scoping</div><div class="phase-desc">Define MVP scope, user stories, tech stack, and success metrics.</div></div>
       </div>
       <div class="mvp-phase">
         <div class="phase-num">02</div>
-        <div><div class="phase-lbl">Week 2</div><div class="phase-title">Architecture & Design</div><div class="phase-desc">System design, UI wireframes, AI model selection and pipeline.</div></div>
+        <div><div class="phase-lbl">Week 2</div><div class="phase-title">Architecture &amp; Design</div><div class="phase-desc">System design, UI wireframes, AI model selection and pipeline.</div></div>
       </div>
       <div class="mvp-phase">
         <div class="phase-num">03</div>
-        <div><div class="phase-lbl">Weeks 3–10</div><div class="phase-title">AI-Assisted Build</div><div class="phase-desc">Rapid sprint cycles with continuous delivery and weekly demos.</div></div>
+        <div><div class="phase-lbl">Weeks 3&#8211;10</div><div class="phase-title">AI-Assisted Build</div><div class="phase-desc">Rapid sprint cycles with continuous delivery and weekly demos.</div></div>
       </div>
       <div class="mvp-phase">
         <div class="phase-num" style="background:var(--orange);border-color:var(--orange);color:white">04</div>
-        <div><div class="phase-lbl">Weeks 10–12</div><div class="phase-title">Launch & Handoff</div><div class="phase-desc">Production deploy, QA, monitoring setup, and full code handoff.</div></div>
+        <div><div class="phase-lbl">Weeks 10&#8211;12</div><div class="phase-title">Launch &amp; Handoff</div><div class="phase-desc">Production deploy, QA, monitoring setup, and full code handoff.</div></div>
       </div>
       <div class="hero-card-footer">
-        <div class="footer-label">Timeline<strong>8–12 Weeks</strong></div>
-        <div class="footer-badge">Production-Ready ✓</div>
+        <div class="footer-label">Timeline<strong>8&#8211;12 Weeks</strong></div>
+        <div class="footer-badge">Production-Ready &#10003;</div>
       </div>
     </div>
   </div>
@@ -374,7 +446,7 @@
       <span class="ticker-item"><span class="ticker-dot"></span>Predictive Analytics</span>
       <span class="ticker-item"><span class="ticker-dot"></span>Voice AI MVP</span>
       <span class="ticker-item"><span class="ticker-dot"></span>Generative AI Apps</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>MLOps & Deploy</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>MLOps &amp; Deploy</span>
       <span class="ticker-item"><span class="ticker-dot"></span>MVP in 8 Weeks</span>
       <span class="ticker-item"><span class="ticker-dot"></span>LLM Integration</span>
       <span class="ticker-item"><span class="ticker-dot"></span>AI Agent MVP</span>
@@ -384,7 +456,7 @@
       <span class="ticker-item"><span class="ticker-dot"></span>Predictive Analytics</span>
       <span class="ticker-item"><span class="ticker-dot"></span>Voice AI MVP</span>
       <span class="ticker-item"><span class="ticker-dot"></span>Generative AI Apps</span>
-      <span class="ticker-item"><span class="ticker-dot"></span>MLOps & Deploy</span>
+      <span class="ticker-item"><span class="ticker-dot"></span>MLOps &amp; Deploy</span>
     </div>
   </div>
 </div>
@@ -394,7 +466,7 @@
   <div class="stats-inner">
     <div class="stat-card fade-up"><div class="stat-num"><span data-count="130" data-suffix="+">0</span></div><div class="stat-label">AI MVPs Shipped</div></div>
     <div class="stat-card fade-up"><div class="stat-num"><span data-count="8" data-suffix="">0</span><span class="o">+ Yrs</span></div><div class="stat-label">MVP Experience</div></div>
-    <div class="stat-card fade-up"><div class="stat-num"><span data-count="3" data-suffix="–5×">0</span></div><div class="stat-label">Faster Than Agencies</div></div>
+    <div class="stat-card fade-up"><div class="stat-num"><span data-count="3" data-suffix="&#8211;5&#215;">0</span></div><div class="stat-label">Faster Than Agencies</div></div>
     <div class="stat-card fade-up"><div class="stat-num"><span data-count="10" data-suffix="+">0</span></div><div class="stat-label">Countries Served</div></div>
   </div>
 </section>
@@ -405,34 +477,34 @@
     <div class="fade-up">
       <div class="section-tag" style="margin-bottom:18px"><span class="section-tag-dot"></span><span>What is an MVP?</span></div>
       <h2>Build to <span class="orange">Validate Fast,</span><br/>Not to Impress.</h2>
-      <p>A <strong>Minimum Viable Product (MVP)</strong> is the leanest version of your AI product that solves a real problem for real users — built fast, deployed quickly, and iterated based on actual feedback.</p>
-      <p>Most startups fail because they spend 12–18 months building the "perfect" product. We help you go live in <strong>8–12 weeks</strong> with a working AI system your users can actually use — and pay for.</p>
+      <p>A <strong>Minimum Viable Product (MVP)</strong> is the leanest version of your AI product that solves a real problem for real users &#8212; built fast, deployed quickly, and iterated based on actual feedback.</p>
+      <p>Most startups fail because they spend 12&#8211;18 months building the &#8220;perfect&#8221; product. We help you go live in <strong>8&#8211;12 weeks</strong> with a working AI system your users can actually use &#8212; and pay for.</p>
       <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px">
-        <div class="mvp-hl"><div class="mvp-hl-icon">🎯</div><div class="mvp-hl-text"><strong>Validate Before You Over-Invest</strong><span>Prove product-market fit with real users before committing to full-scale development.</span></div></div>
-        <div class="mvp-hl"><div class="mvp-hl-icon">⚡</div><div class="mvp-hl-text"><strong>Ship Fast, Iterate Faster</strong><span>Weekly delivery cycles keep momentum high and let you adapt based on real feedback.</span></div></div>
-        <div class="mvp-hl"><div class="mvp-hl-icon">💰</div><div class="mvp-hl-text"><strong>4× Lower Cost Than Traditional Dev</strong><span>Our AI-accelerated methodology dramatically reduces engineering hours without sacrificing quality.</span></div></div>
+        <div class="mvp-hl"><div class="mvp-hl-icon">&#127919;</div><div class="mvp-hl-text"><strong>Validate Before You Over-Invest</strong><span>Prove product-market fit with real users before committing to full-scale development.</span></div></div>
+        <div class="mvp-hl"><div class="mvp-hl-icon">&#9889;</div><div class="mvp-hl-text"><strong>Ship Fast, Iterate Faster</strong><span>Weekly delivery cycles keep momentum high and let you adapt based on real feedback.</span></div></div>
+        <div class="mvp-hl"><div class="mvp-hl-icon">&#128176;</div><div class="mvp-hl-text"><strong>4&#215; Lower Cost Than Traditional Dev</strong><span>Our AI-accelerated methodology dramatically reduces engineering hours without sacrificing quality.</span></div></div>
       </div>
     </div>
     <div class="mvp-roadmap fade-up">
-      <div class="roadmap-title">MVP Journey — 12 Weeks</div>
+      <div class="roadmap-title">MVP Journey &#8212; 12 Weeks</div>
       <div class="roadmap-weeks">
         <div class="rw"><div class="rw-dot active">W1</div><div class="rw-lbl">Scope</div></div>
         <div class="rw"><div class="rw-dot active">W2</div><div class="rw-lbl">Design</div></div>
         <div class="rw"><div class="rw-dot semi">W4</div><div class="rw-lbl gray">Build</div></div>
         <div class="rw"><div class="rw-dot semi">W7</div><div class="rw-lbl gray">Iterate</div></div>
         <div class="rw"><div class="rw-dot semi">W10</div><div class="rw-lbl gray">QA</div></div>
-        <div class="rw"><div class="rw-dot done">W12</div><div class="rw-lbl black">Live 🚀</div></div>
+        <div class="rw"><div class="rw-dot done">W12</div><div class="rw-lbl black">Live &#128640;</div></div>
       </div>
       <div class="roadmap-bar"></div>
       <div class="roadmap-items">
-        <div class="roadmap-item"><span>Discovery & Scoping</span><strong>Complete ✓</strong></div>
-        <div class="roadmap-item"><span>Core AI Feature Built</span><strong>Complete ✓</strong></div>
-        <div class="roadmap-item"><span>User Testing & Iteration</span><strong>Complete ✓</strong></div>
-        <div class="roadmap-item"><span>Production Deployment</span><span class="progress">Week 12 →</span></div>
+        <div class="roadmap-item"><span>Discovery &amp; Scoping</span><strong>Complete &#10003;</strong></div>
+        <div class="roadmap-item"><span>Core AI Feature Built</span><strong>Complete &#10003;</strong></div>
+        <div class="roadmap-item"><span>User Testing &amp; Iteration</span><strong>Complete &#10003;</strong></div>
+        <div class="roadmap-item"><span>Production Deployment</span><span class="progress">Week 12 &#8594;</span></div>
       </div>
       <div class="roadmap-footer">
         <div class="roadmap-footer-lbl">Outcome<strong>Live AI Product</strong></div>
-        <div class="roadmap-badge">Week 12 ✓</div>
+        <div class="roadmap-badge">Week 12 &#10003;</div>
       </div>
     </div>
   </div>
@@ -450,53 +522,53 @@
       <div class="pkg fade-up">
         <span class="pkg-badge outline">Starter</span>
         <div class="pkg-name">MVP Lite</div>
-        <div class="pkg-desc">Validate a single AI feature or concept with real users — fast and affordable.</div>
-        <div class="pkg-timeline">⏱ 4–6 Weeks</div>
+        <div class="pkg-desc">Validate a single AI feature or concept with real users &#8212; fast and affordable.</div>
+        <div class="pkg-timeline">&#9200; 4&#8211;6 Weeks</div>
         <div class="pkg-div"></div>
         <ul>
-          <li><span class="pkg-check">✓</span>1 Core AI Feature (LLM, CV, or NLP)</li>
-          <li><span class="pkg-check">✓</span>Basic UI / Admin Dashboard</li>
-          <li><span class="pkg-check">✓</span>Cloud Deployment (AWS / GCP)</li>
-          <li><span class="pkg-check">✓</span>1 Third-Party API Integration</li>
-          <li><span class="pkg-check">✓</span>2-Week Post-Launch Support</li>
-          <li><span class="pkg-check">✓</span>Full Source Code Handoff</li>
+          <li><span class="pkg-check">&#10003;</span>1 Core AI Feature (LLM, CV, or NLP)</li>
+          <li><span class="pkg-check">&#10003;</span>Basic UI / Admin Dashboard</li>
+          <li><span class="pkg-check">&#10003;</span>Cloud Deployment (AWS / GCP)</li>
+          <li><span class="pkg-check">&#10003;</span>1 Third-Party API Integration</li>
+          <li><span class="pkg-check">&#10003;</span>2-Week Post-Launch Support</li>
+          <li><span class="pkg-check">&#10003;</span>Full Source Code Handoff</li>
         </ul>
-        <a href="https://wa.me/919007271601?text=I%27m%20interested%20in%20MVP%20Lite." target="_blank" class="pkg-cta cta-outline">Get Started →</a>
+        <a href="https://wa.me/919007271601?text=I%27m%20interested%20in%20MVP%20Lite." target="_blank" class="pkg-cta cta-outline">Get Started &#8594;</a>
       </div>
       <div class="pkg featured fade-up">
         <span class="pkg-badge">Most Popular</span>
         <div class="pkg-name">AI MVP Pro</div>
         <div class="pkg-desc">End-to-end AI product ready for investors, customers, and real-world scale.</div>
-        <div class="pkg-timeline">⏱ 8–10 Weeks</div>
+        <div class="pkg-timeline">&#9200; 8&#8211;10 Weeks</div>
         <div class="pkg-div"></div>
         <ul>
-          <li><span class="pkg-check">✓</span>Up to 3 AI Features / Modules</li>
-          <li><span class="pkg-check">✓</span>Full-Stack Web App (React + Backend)</li>
-          <li><span class="pkg-check">✓</span>LLM Integration (GPT-4, Claude, Gemini)</li>
-          <li><span class="pkg-check">✓</span>RAG System + Vector DB Setup</li>
-          <li><span class="pkg-check">✓</span>CI/CD Pipeline + Auto-Deployment</li>
-          <li><span class="pkg-check">✓</span>Auth, Payments & Multi-Tenancy</li>
-          <li><span class="pkg-check">✓</span>Monitoring & Observability</li>
-          <li><span class="pkg-check">✓</span>4-Week Post-Launch Support</li>
+          <li><span class="pkg-check">&#10003;</span>Up to 3 AI Features / Modules</li>
+          <li><span class="pkg-check">&#10003;</span>Full-Stack Web App (React + Backend)</li>
+          <li><span class="pkg-check">&#10003;</span>LLM Integration (GPT-4, Claude, Gemini)</li>
+          <li><span class="pkg-check">&#10003;</span>RAG System + Vector DB Setup</li>
+          <li><span class="pkg-check">&#10003;</span>CI/CD Pipeline + Auto-Deployment</li>
+          <li><span class="pkg-check">&#10003;</span>Auth, Payments &amp; Multi-Tenancy</li>
+          <li><span class="pkg-check">&#10003;</span>Monitoring &amp; Observability</li>
+          <li><span class="pkg-check">&#10003;</span>4-Week Post-Launch Support</li>
         </ul>
-        <a href="https://wa.me/919007271601?text=I%27m%20interested%20in%20AI%20MVP%20Pro." target="_blank" class="pkg-cta cta-orange">Start My MVP →</a>
+        <a href="https://wa.me/919007271601?text=I%27m%20interested%20in%20AI%20MVP%20Pro." target="_blank" class="pkg-cta cta-orange">Start My MVP &#8594;</a>
       </div>
       <div class="pkg fade-up">
         <span class="pkg-badge outline">Enterprise</span>
         <div class="pkg-name">Enterprise MVP</div>
         <div class="pkg-desc">Full-scale AI system for enterprise workloads, compliance, and Fortune 500 needs.</div>
-        <div class="pkg-timeline">⏱ 10–12 Weeks</div>
+        <div class="pkg-timeline">&#9200; 10&#8211;12 Weeks</div>
         <div class="pkg-div"></div>
         <ul>
-          <li><span class="pkg-check">✓</span>Custom AI Architecture & Strategy</li>
-          <li><span class="pkg-check">✓</span>Multiple AI Agents / Pipelines</li>
-          <li><span class="pkg-check">✓</span>Fine-Tuned Models on Your Data</li>
-          <li><span class="pkg-check">✓</span>Enterprise Security & Compliance</li>
-          <li><span class="pkg-check">✓</span>Dedicated PM + Senior AI Engineer</li>
-          <li><span class="pkg-check">✓</span>SLA & 24/7 On-Call Support</li>
-          <li><span class="pkg-check">✓</span>8-Week Hyper-Care Post-Launch</li>
+          <li><span class="pkg-check">&#10003;</span>Custom AI Architecture &amp; Strategy</li>
+          <li><span class="pkg-check">&#10003;</span>Multiple AI Agents / Pipelines</li>
+          <li><span class="pkg-check">&#10003;</span>Fine-Tuned Models on Your Data</li>
+          <li><span class="pkg-check">&#10003;</span>Enterprise Security &amp; Compliance</li>
+          <li><span class="pkg-check">&#10003;</span>Dedicated PM + Senior AI Engineer</li>
+          <li><span class="pkg-check">&#10003;</span>SLA &amp; 24/7 On-Call Support</li>
+          <li><span class="pkg-check">&#10003;</span>8-Week Hyper-Care Post-Launch</li>
         </ul>
-        <a href="https://wa.me/919007271601?text=I%27m%20interested%20in%20Enterprise%20MVP." target="_blank" class="pkg-cta cta-dark">Talk to Sales →</a>
+        <a href="https://wa.me/919007271601?text=I%27m%20interested%20in%20Enterprise%20MVP." target="_blank" class="pkg-cta cta-dark">Talk to Sales &#8594;</a>
       </div>
     </div>
   </div>
@@ -506,17 +578,17 @@
 <section class="included">
   <div class="included-inner">
     <div class="section-header">
-      <div class="section-tag fade-up"><span class="section-tag-dot"></span><span>What's Included</span></div>
+      <div class="section-tag fade-up"><span class="section-tag-dot"></span><span>What&#8217;s Included</span></div>
       <h2 class="section-title fade-up">Every MVP Comes With<br/><span class="orange">Everything You Need</span></h2>
       <p class="section-sub fade-up">No hidden extras, no upsells. Production-grade from day one.</p>
     </div>
     <div class="included-grid">
-      <div class="inc-card peach fade-up"><div class="inc-num">01</div><div class="inc-icon ii-orange">🤖</div><div class="inc-layer lo">Core AI</div><h3>Custom AI / LLM Integration</h3><p>GPT-4, Claude, Gemini, or open-source — integrated with your data via RAG, fine-tuning, or custom inference endpoints.</p></div>
-      <div class="inc-card lavender fade-up"><div class="inc-num">02</div><div class="inc-icon ii-purple">🖥️</div><div class="inc-layer lp">Frontend</div><h3>Full-Stack Web Application</h3><p>Production-ready React frontend with robust backend API — built for real users, real traffic, and real scale from day one.</p></div>
-      <div class="inc-card green fade-up"><div class="inc-num">03</div><div class="inc-icon ii-green">🚀</div><div class="inc-layer lg">Deployment</div><h3>Automated CI/CD & Cloud Deploy</h3><p>Fully automated pipelines with security scanning, staging environments, and one-click production releases on AWS / GCP / Azure.</p></div>
-      <div class="inc-card blue fade-up"><div class="inc-num">04</div><div class="inc-icon ii-blue">📊</div><div class="inc-layer lb">Observability</div><h3>Monitoring & Analytics</h3><p>Real-time dashboards, error tracking, LLM cost monitoring, and usage analytics so you always know how your MVP performs.</p></div>
-      <div class="inc-card pink fade-up"><div class="inc-num">05</div><div class="inc-icon ii-pink">🔐</div><div class="inc-layer lk">Security</div><h3>Auth, Security & Data Privacy</h3><p>User auth, role-based access, data encryption, and GDPR-compliant data handling baked in from the start.</p></div>
-      <div class="inc-card yellow fade-up"><div class="inc-num">06</div><div class="inc-icon ii-yellow">📁</div><div class="inc-layer ly">Handoff</div><h3>Source Code & Documentation</h3><p>100% of your codebase, technical docs, API docs, architecture diagrams, and recorded walkthrough — fully yours at launch.</p></div>
+      <div class="inc-card peach fade-up"><div class="inc-num">01</div><div class="inc-icon ii-orange">&#129302;</div><div class="inc-layer lo">Core AI</div><h3>Custom AI / LLM Integration</h3><p>GPT-4, Claude, Gemini, or open-source &#8212; integrated with your data via RAG, fine-tuning, or custom inference endpoints.</p></div>
+      <div class="inc-card lavender fade-up"><div class="inc-num">02</div><div class="inc-icon ii-purple">&#128421;&#65039;</div><div class="inc-layer lp">Frontend</div><h3>Full-Stack Web Application</h3><p>Production-ready React frontend with robust backend API &#8212; built for real users, real traffic, and real scale from day one.</p></div>
+      <div class="inc-card green fade-up"><div class="inc-num">03</div><div class="inc-icon ii-green">&#128640;</div><div class="inc-layer lg">Deployment</div><h3>Automated CI/CD &amp; Cloud Deploy</h3><p>Fully automated pipelines with security scanning, staging environments, and one-click production releases on AWS / GCP / Azure.</p></div>
+      <div class="inc-card blue fade-up"><div class="inc-num">04</div><div class="inc-icon ii-blue">&#128202;</div><div class="inc-layer lb">Observability</div><h3>Monitoring &amp; Analytics</h3><p>Real-time dashboards, error tracking, LLM cost monitoring, and usage analytics so you always know how your MVP performs.</p></div>
+      <div class="inc-card pink fade-up"><div class="inc-num">05</div><div class="inc-icon ii-pink">&#128272;</div><div class="inc-layer lk">Security</div><h3>Auth, Security &amp; Data Privacy</h3><p>User auth, role-based access, data encryption, and GDPR-compliant data handling baked in from the start.</p></div>
+      <div class="inc-card yellow fade-up"><div class="inc-num">06</div><div class="inc-icon ii-yellow">&#128193;</div><div class="inc-layer ly">Handoff</div><h3>Source Code &amp; Documentation</h3><p>100% of your codebase, technical docs, API docs, architecture diagrams, and recorded walkthrough &#8212; fully yours at launch.</p></div>
     </div>
   </div>
 </section>
@@ -533,30 +605,30 @@
       <div class="proc-step">
         <div class="proc-week">Week 1</div>
         <div class="proc-num">01</div>
-        <div class="proc-title">Discovery & Scoping</div>
-        <p class="proc-desc">AI tools map your business logic, user journeys, and edge cases. We define your MVP scope, success metrics, and tech stack in hours — not weeks.</p>
-        <div class="proc-out">→ Deliverable: MVP Scope Document</div>
+        <div class="proc-title">Discovery &amp; Scoping</div>
+        <p class="proc-desc">AI tools map your business logic, user journeys, and edge cases. We define your MVP scope, success metrics, and tech stack in hours &#8212; not weeks.</p>
+        <div class="proc-out">&#8594; Deliverable: MVP Scope Document</div>
       </div>
       <div class="proc-step">
         <div class="proc-week">Week 2</div>
         <div class="proc-num">02</div>
-        <div class="proc-title">Architecture & Design</div>
-        <p class="proc-desc">AI-automated system design optimized for scalability and cost. UI wireframes, data models, AI pipeline architecture — all finalized before a line of code is written.</p>
-        <div class="proc-out">→ Deliverable: Architecture Blueprint</div>
+        <div class="proc-title">Architecture &amp; Design</div>
+        <p class="proc-desc">AI-automated system design optimized for scalability and cost. UI wireframes, data models, AI pipeline architecture &#8212; all finalized before a line of code is written.</p>
+        <div class="proc-out">&#8594; Deliverable: Architecture Blueprint</div>
       </div>
       <div class="proc-step proc-active">
-        <div class="proc-week">Weeks 3–10</div>
+        <div class="proc-week">Weeks 3&#8211;10</div>
         <div class="proc-num">03</div>
         <div class="proc-title">AI-Assisted Build</div>
-        <p class="proc-desc">Senior engineers plus AI co-pilots write production-quality code at 5× speed. Weekly demos, continuous integration, real deliverables every sprint.</p>
-        <div class="proc-out">→ Deliverable: Weekly Working Builds</div>
+        <p class="proc-desc">Senior engineers plus AI co-pilots write production-quality code at 5&#215; speed. Weekly demos, continuous integration, real deliverables every sprint.</p>
+        <div class="proc-out">&#8594; Deliverable: Weekly Working Builds</div>
       </div>
       <div class="proc-step">
-        <div class="proc-week">Weeks 10–12</div>
+        <div class="proc-week">Weeks 10&#8211;12</div>
         <div class="proc-num">04</div>
-        <div class="proc-title">Launch & Handoff</div>
-        <p class="proc-desc">Automated CI/CD, security scanning, performance testing, and production deployment. Full source code and documentation — 100% yours, forever.</p>
-        <div class="proc-out">→ Deliverable: Live Product + Full Codebase</div>
+        <div class="proc-title">Launch &amp; Handoff</div>
+        <p class="proc-desc">Automated CI/CD, security scanning, performance testing, and production deployment. Full source code and documentation &#8212; 100% yours, forever.</p>
+        <div class="proc-out">&#8594; Deliverable: Live Product + Full Codebase</div>
       </div>
     </div>
   </div>
@@ -586,22 +658,22 @@
   <div class="testimonials-inner">
     <div class="section-header">
       <div class="section-tag fade-up"><span class="section-tag-dot"></span><span>Client Stories</span></div>
-      <h2 class="section-title fade-up">What Founders & CTOs<br/><span class="orange">Say About Us</span></h2>
-      <p class="section-sub fade-up">4.9/5 across Clutch, GoodFirms & DesignRush — from startups to Fortune 500.</p>
+      <h2 class="section-title fade-up">What Founders &amp; CTOs<br/><span class="orange">Say About Us</span></h2>
+      <p class="section-sub fade-up">4.9/5 across Clutch, GoodFirms &amp; DesignRush &#8212; from startups to Fortune 500.</p>
     </div>
     <div class="testi-grid">
-      <div class="testi-card fade-up"><div class="testi-stars">★★★★★</div><p class="testi-text">"Their expertise in AI solutions greatly improved our operations, ensuring real-time visibility and system reliability. Exceptional dedication to seamless MVP delivery."</p><div class="testi-author"><div class="testi-av">HA</div><div><div class="testi-name">Haider Ali Baig</div><div class="testi-role">CEO, Exponeur</div></div></div></div>
-      <div class="testi-card fade-up"><div class="testi-stars">★★★★★</div><p class="testi-text">"The AI fraud detection MVP they built identifies unusual patterns in real-time and flags issues instantly — significantly cutting fraud incidents within weeks of going live."</p><div class="testi-author"><div class="testi-av" style="background:var(--orange)">AK</div><div><div class="testi-name">Ariyan Kabir</div><div class="testi-role">CEO, GrayMatter Robotics</div></div></div></div>
-      <div class="testi-card fade-up"><div class="testi-stars">★★★★★</div><p class="testi-text">"Innovacio shipped our Customer Insights AI MVP in under 10 weeks. It revolutionized how we understand behavior and completely transformed our marketing strategy."</p><div class="testi-author"><div class="testi-av" style="background:#7C3AED">CM</div><div><div class="testi-name">Charlie Meredith</div><div class="testi-role">CTO, GoodMaps</div></div></div></div>
+      <div class="testi-card fade-up"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-text">&#8220;Their expertise in AI solutions greatly improved our operations, ensuring real-time visibility and system reliability. Exceptional dedication to seamless MVP delivery.&#8221;</p><div class="testi-author"><div class="testi-av">HA</div><div><div class="testi-name">Haider Ali Baig</div><div class="testi-role">CEO, Exponeur</div></div></div></div>
+      <div class="testi-card fade-up"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-text">&#8220;The AI fraud detection MVP they built identifies unusual patterns in real-time and flags issues instantly &#8212; significantly cutting fraud incidents within weeks of going live.&#8221;</p><div class="testi-author"><div class="testi-av" style="background:var(--orange)">AK</div><div><div class="testi-name">Ariyan Kabir</div><div class="testi-role">CEO, GrayMatter Robotics</div></div></div></div>
+      <div class="testi-card fade-up"><div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p class="testi-text">&#8220;Innovacio shipped our Customer Insights AI MVP in under 10 weeks. It revolutionized how we understand behavior and completely transformed our marketing strategy.&#8221;</p><div class="testi-author"><div class="testi-av" style="background:#7C3AED">CM</div><div><div class="testi-name">Charlie Meredith</div><div class="testi-role">CTO, GoodMaps</div></div></div></div>
     </div>
     <div class="awards fade-up">
       <div class="awards-lbl">Recognised on Leading Industry Platforms</div>
       <div class="awards-list">
-        <span class="award-pill">🏆 Top ML Company — Clutch</span>
-        <span class="award-pill">🥇 Top AI Company — DesignRush</span>
-        <span class="award-pill">⭐ Top AI — GoodFirms</span>
-        <span class="award-pill">🌟 Great Mid-Size Workplace</span>
-        <span class="award-pill">🎖 Selected Firms — Top AI</span>
+        <span class="award-pill">&#127942; Top ML Company &#8212; Clutch</span>
+        <span class="award-pill">&#129351; Top AI Company &#8212; DesignRush</span>
+        <span class="award-pill">&#11088; Top AI &#8212; GoodFirms</span>
+        <span class="award-pill">&#127775; Great Mid-Size Workplace</span>
+        <span class="award-pill">&#127894; Selected Firms &#8212; Top AI</span>
       </div>
     </div>
   </div>
@@ -615,12 +687,12 @@
       <h2 class="section-title fade-up">Common <span class="orange">MVP Questions</span></h2>
     </div>
     <div class="faq-list fade-up">
-      <div class="faq-item"><div class="faq-q">What exactly is included in the MVP? <span class="faq-arrow">+</span></div><div class="faq-a"><div class="faq-a-inner">Every MVP includes the core AI feature(s), a full-stack web application, cloud deployment, CI/CD pipelines, authentication, monitoring, and full source code handoff. No hidden extras — what you see in the package is what gets delivered and deployed.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Can you really ship in 8 weeks? <span class="faq-arrow">+</span></div><div class="faq-a"><div class="faq-a-inner">Yes — for MVP Lite and Pro packages with a well-defined scope. Our AI-accelerated model uses specialized LLMs for discovery, automated architecture generation, and AI co-pilots alongside senior engineers to compress timelines dramatically. We've done it 130+ times.</div></div></div>
-      <div class="faq-item"><div class="faq-q">What AI models and tech stack do you use? <span class="faq-arrow">+</span></div><div class="faq-a"><div class="faq-a-inner">We're model-agnostic — we choose the best fit from GPT-4, Claude, Gemini, Llama, Mistral, or fine-tuned open-source models. Stack: React / Next.js frontends, Python / Node backends, PostgreSQL / MongoDB / Pinecone, and AWS / GCP / Azure for deployment.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Do I own the code after the MVP is done? <span class="faq-arrow">+</span></div><div class="faq-a"><div class="faq-a-inner">100%. You get full ownership of all source code, architecture documents, API docs, database schemas, and a recorded walkthrough. We hand over everything — no lock-in, no ongoing licensing fees.</div></div></div>
+      <div class="faq-item"><div class="faq-q">What exactly is included in the MVP? <span class="faq-arrow">+</span></div><div class="faq-a"><div class="faq-a-inner">Every MVP includes the core AI feature(s), a full-stack web application, cloud deployment, CI/CD pipelines, authentication, monitoring, and full source code handoff. No hidden extras &#8212; what you see in the package is what gets delivered and deployed.</div></div></div>
+      <div class="faq-item"><div class="faq-q">Can you really ship in 8 weeks? <span class="faq-arrow">+</span></div><div class="faq-a"><div class="faq-a-inner">Yes &#8212; for MVP Lite and Pro packages with a well-defined scope. Our AI-accelerated model uses specialized LLMs for discovery, automated architecture generation, and AI co-pilots alongside senior engineers to compress timelines dramatically. We&#8217;ve done it 130+ times.</div></div></div>
+      <div class="faq-item"><div class="faq-q">What AI models and tech stack do you use? <span class="faq-arrow">+</span></div><div class="faq-a"><div class="faq-a-inner">We&#8217;re model-agnostic &#8212; we choose the best fit from GPT-4, Claude, Gemini, Llama, Mistral, or fine-tuned open-source models. Stack: React / Next.js frontends, Python / Node backends, PostgreSQL / MongoDB / Pinecone, and AWS / GCP / Azure for deployment.</div></div></div>
+      <div class="faq-item"><div class="faq-q">Do I own the code after the MVP is done? <span class="faq-arrow">+</span></div><div class="faq-a"><div class="faq-a-inner">100%. You get full ownership of all source code, architecture documents, API docs, database schemas, and a recorded walkthrough. We hand over everything &#8212; no lock-in, no ongoing licensing fees.</div></div></div>
       <div class="faq-item"><div class="faq-q">What if my idea changes mid-build? <span class="faq-arrow">+</span></div><div class="faq-a"><div class="faq-a-inner">Our sprint-based model is built for adaptability. Weekly demos mean we can pivot on smaller elements without derailing the project. Major scope changes are handled with a formal change order to keep timelines and budgets clear.</div></div></div>
-      <div class="faq-item"><div class="faq-q">How do we get started? <span class="faq-arrow">+</span></div><div class="faq-a"><div class="faq-a-inner">Book a free 30-minute MVP Strategy Call or message us on WhatsApp. We'll discuss your idea, recommend the right package, and send a detailed proposal within 48 hours. No commitment required for the initial call.</div></div></div>
+      <div class="faq-item"><div class="faq-q">How do we get started? <span class="faq-arrow">+</span></div><div class="faq-a"><div class="faq-a-inner">Book a free 30-minute MVP Strategy Call or message us on WhatsApp. We&#8217;ll discuss your idea, recommend the right package, and send a detailed proposal within 48 hours. No commitment required for the initial call.</div></div></div>
     </div>
   </div>
 </section>
@@ -630,12 +702,12 @@
   <div class="cta-circle"></div>
   <div class="final-cta-inner">
     <div class="section-tag fade-up" style="width:fit-content;margin:0 auto 24px"><span class="section-tag-dot"></span><span>Limited MVP Spots This Quarter</span></div>
-    <h2 class="fade-up">Your AI MVP.<br/><span class="orange">Let's Build It.</span></h2>
-    <p class="fade-up">Talk to a senior AI engineer today. No forms, no waiting — just a real conversation about your idea and how fast we can ship it.</p>
+    <h2 class="fade-up">Your AI MVP.<br/><span class="orange">Let&#8217;s Build It.</span></h2>
+    <p class="fade-up">Talk to a senior AI engineer today. No forms, no waiting &#8212; just a real conversation about your idea and how fast we can ship it.</p>
     <div class="final-btns fade-up">
-      <a href="tel:+16468322237" class="btn-final-dark">
+      <a href="tel:6468322237" class="btn-final-dark">
         <div class="btn-icon"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg></div>
-        <div><div class="btn-sm-lbl">Free MVP Strategy Call</div><div class="btn-lg-lbl">+16468322237</div></div>
+        <div><div class="btn-sm-lbl">Free MVP Strategy Call</div><div class="btn-lg-lbl">(646) 832-2237</div></div>
       </a>
       <a href="https://wa.me/919007271601?text=Hi!%20I%27d%20like%20to%20build%20an%20AI%20MVP%20with%20Innovacio." target="_blank" class="btn-final-orange">
         <div class="btn-icon"><svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
@@ -645,10 +717,23 @@
   </div>
 </section>
 
+<!-- FOOTER URGENCY BANNER -->
+<div class="footer-urgency">
+  <div class="footer-urgency-inner">
+    <span class="footer-urgency-text">&#9203; <strong>Q2 2026 is almost full.</strong> Secure your MVP spot before it&#8217;s gone &#8212; spots are strictly limited.</span>
+    <a href="tel:6468322237" class="footer-urgency-cta">
+      &#128222; Call (646) 832-2237
+    </a>
+    <a href="https://wa.me/919007271601?text=Hi!%20I%27d%20like%20to%20build%20an%20AI%20MVP%20with%20Innovacio." target="_blank" class="footer-urgency-cta">
+      &#128172; WhatsApp Now
+    </a>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-left"><div class="footer-mark">IT</div><span class="footer-copy">© 2026 Innovacio Technology. All Rights Reserved.</span></div>
+    <div class="footer-left"><div class="footer-mark">IT</div><span class="footer-copy">&#169; 2026 Innovacio Technology. All Rights Reserved.</span></div>
     <div class="footer-links">
       <a href="https://innovaciotech.com" target="_blank">Main Website</a>
       <a href="https://innovaciotech.com/privacy-policy" target="_blank">Privacy Policy</a>
@@ -660,28 +745,26 @@
 <!-- MOBILE STICKY -->
 <div class="mobile-sticky">
   <div class="mobile-sticky-inner">
-    <a href="tel:+16468322237" class="mob-btn mob-dark"><svg width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>Call Now</a>
+    <a href="tel:6468322237" class="mob-btn mob-dark"><svg width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>(646) 832-2237</a>
     <a href="https://wa.me/919007271601?text=Hi!" target="_blank" class="mob-btn mob-orange"><svg width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
   </div>
 </div>
 
 <script>
-  // Comparison table
   const rows = [
-    { m:'MVP Timeline', t:'6–9 Months', i:'8–12 Weeks' },
-    { m:'Delivery Speed', t:'1× Standard', i:'3–5× Faster' },
-    { m:'Cost', t:'High Overhead', i:'4× Lower Cost' },
+    { m:'MVP Timeline', t:'6&#8211;9 Months', i:'8&#8211;12 Weeks' },
+    { m:'Delivery Speed', t:'1&#215; Standard', i:'3&#8211;5&#215; Faster' },
+    { m:'Cost', t:'High Overhead', i:'4&#215; Lower Cost' },
     { m:'AI Expertise', t:'Add-on / Outsourced', i:'Core Speciality' },
-    { m:'Deployment', t:'Manual & Slow', i:'Automated CI/CD' },
+    { m:'Deployment', t:'Manual &amp; Slow', i:'Automated CI/CD' },
     { m:'Post-Launch Support', t:'Extra / Billed', i:'Included in Package' },
     { m:'Code Ownership', t:'Retained / Locked', i:'100% Yours' },
   ];
   const body = document.getElementById('cmp-body');
-  rows.forEach((r, i) => {
-    body.innerHTML += `<div class="cmp-row"><div class="cmp-cell lbl">${r.m}</div><div class="cmp-cell bad"><span>✕</span>${r.t}</div><div class="cmp-cell good"><span>✓</span>${r.i}</div></div>`;
+  rows.forEach(r => {
+    body.innerHTML += `<div class="cmp-row"><div class="cmp-cell lbl">${r.m}</div><div class="cmp-cell bad"><span>&#10005;</span>${r.t}</div><div class="cmp-cell good"><span>&#10003;</span>${r.i}</div></div>`;
   });
 
-  // FAQ
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => {
       const item = q.parentElement;
@@ -691,7 +774,6 @@
     });
   });
 
-  // GSAP
   gsap.registerPlugin(ScrollTrigger);
   gsap.utils.toArray('.fade-up').forEach(el => {
     gsap.fromTo(el, { opacity: 0, y: 24 }, {
@@ -700,7 +782,6 @@
     });
   });
 
-  // Counters
   document.querySelectorAll('[data-count]').forEach(el => {
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
